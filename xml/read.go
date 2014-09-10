@@ -429,7 +429,7 @@ func (p *Decoder) unmarshal(val reflect.Value, start *StartElement) error {
 				strv := finfo.value(sv)
 				// Look for attribute.
 				for _, a := range start.Attr {
-					log.Println("######", finfo.xmlns, a.Name.Space)
+					// log.Println("######", finfo.xmlns, a.Name.Space)
 
 					if a.Name.Local == finfo.name && (finfo.xmlns == "" || finfo.xmlns == a.Name.Space) {
 						if err := p.unmarshalAttr(strv, a); err != nil {
