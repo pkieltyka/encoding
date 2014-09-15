@@ -9,7 +9,6 @@ import (
 	"encoding"
 	"errors"
 	"fmt"
-	"log"
 	"reflect"
 	"strconv"
 	"strings"
@@ -394,17 +393,13 @@ func (p *Decoder) unmarshal(val reflect.Value, start *StartElement) error {
 			return err
 		}
 
-		// log.Println("HIIIIIIIIIIII")
-
 		// Validate and assign element name.
 		if tinfo.xmlname != nil {
-			log.Println("xmlname..", tinfo.xmlname)
-
 			finfo := tinfo.xmlname
 			if finfo.name != "" && finfo.name != start.Name.Local {
 				return UnmarshalError("expected element type <" + finfo.name + "> but have <" + start.Name.Local + ">")
 			}
-			log.Println("READ", finfo.xmlns, start.Name.Space)
+			// log.Println("READ", finfo.xmlns, start.Name.Space)
 			if finfo.xmlns != "" && finfo.xmlns != start.Name.Space {
 				e := "expected element <" + finfo.name + "> in name space " + finfo.xmlns + " but have "
 				if start.Name.Space == "" {
